@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "create-index-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/createIndex/CreateIndexWebPart.js",
+          "manifest": "./src/webparts/createIndex/CreateIndexWebPart.manifest.json"
+        }
+      ]
+    },
+    "upload-document-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/uploadDocument/UploadDocumentWebPart.js",
+          "manifest": "./src/webparts/uploadDocument/UploadDocumentWebPart.manifest.json"
+        }
+      ]
+    },
+    "approve-document-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/approveDocument/ApproveDocumentWebPart.js",
+          "manifest": "./src/webparts/approveDocument/ApproveDocumentWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "CreateIndexWebPartStrings": "lib/webparts/createIndex/loc/{locale}.js",
+    "UploadDocumentWebPartStrings": "lib/webparts/uploadDocument/loc/{locale}.js",
+    "ControlStrings": "node_modules/@pnp/spfx-controls-react/lib/loc/{locale}.js",
+    "PropertyControlStrings": "node_modules/@pnp/spfx-property-controls/lib/loc/{locale}.js",
+    "ApproveDocumentWebPartStrings": "lib/webparts/approveDocument/loc/{locale}.js"
+  }
+}
