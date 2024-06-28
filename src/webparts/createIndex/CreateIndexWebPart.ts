@@ -10,26 +10,20 @@ import { IReadonlyTheme } from '@microsoft/sp-component-base';
 
 import * as strings from 'CreateIndexWebPartStrings';
 import CreateIndex from './components/CreateIndex';
-import { ICreateIndexProps } from './components/ICreateIndexProps';
+import { ICreateIndexProps } from './interfaces';
 
-export interface ICreateIndexWebPartProps {
-  description: string;
-}
 
-export default class CreateIndexWebPart extends BaseClientSideWebPart<ICreateIndexWebPartProps> {
+export default class CreateIndexWebPart extends BaseClientSideWebPart<ICreateIndexProps> {
 
-  private _isDarkTheme: boolean = false;
-  private _environmentMessage: string = '';
-
+  
   public render(): void {
     const element: React.ReactElement<ICreateIndexProps> = React.createElement(
       CreateIndex,
       {
-        description: this.properties.description,
-        isDarkTheme: this._isDarkTheme,
-        environmentMessage: this._environmentMessage,
-        hasTeamsContext: !!this.context.sdks.microsoftTeams,
-        userDisplayName: this.context.pageContext.user.displayName
+        webpartHeader: this.properties.webpartHeader,
+        context: this.context,
+        siteUrl: this.context.pageContext.web.serverRelativeUrl,
+        
       }
     );
 
@@ -38,7 +32,7 @@ export default class CreateIndexWebPart extends BaseClientSideWebPart<ICreateInd
 
   protected onInit(): Promise<void> {
     return this._getEnvironmentMessage().then(message => {
-      this._environmentMessage = message;
+      // this._environmentMessage = message;
     });
   }
 
@@ -75,7 +69,7 @@ export default class CreateIndexWebPart extends BaseClientSideWebPart<ICreateInd
       return;
     }
 
-    this._isDarkTheme = !!currentTheme.isInverted;
+    // this._isDarkTheme = !!currentTheme.isInverted;
     const {
       semanticColors
     } = currentTheme;
@@ -107,8 +101,8 @@ export default class CreateIndexWebPart extends BaseClientSideWebPart<ICreateInd
             {
               groupName: strings.BasicGroupName,
               groupFields: [
-                PropertyPaneTextField('description', {
-                  label: strings.DescriptionFieldLabel
+                PropertyPaneTextField('webpartHeader', {
+                  label: 'webpartHeader'
                 })
               ]
             }
